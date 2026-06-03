@@ -81,8 +81,8 @@ export default function Home() {
       setIsCalculating(false);
       resetFields();
       toast({
-        title: "Commission report generated",
-        description: `${SAMPLE_DATA.length} records calculated for pay date ${format(effectivePayDate, "dd MMM yyyy")}.`,
+        title: "Report sent to Finance team",
+        description: `${SAMPLE_DATA.length} records for pay date ${format(effectivePayDate, "dd MMM yyyy")} were calculated and the BACS file was sent automatically.`,
       });
     }, 600);
   };
