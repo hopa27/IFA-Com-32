@@ -4,7 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#f0f0f0]">
+    <div className="min-h-[125vh] flex flex-col bg-[#f0f0f0]">
       <Header />
       <main className="flex-1 flex items-center justify-center px-6 py-12">
         <div className="bg-white rounded-[12px] border border-[#BBBBBB] shadow-sm p-12 max-w-md w-full flex flex-col items-center text-center">

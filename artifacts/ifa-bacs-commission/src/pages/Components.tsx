@@ -33,7 +33,7 @@ export default function Components() {
   ]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f0f0f0]">
+    <div className="min-h-[125vh] flex flex-col bg-[#f0f0f0]">
       <Header />
       
       <main className="flex-1 px-[142px] py-8 pb-24 flex flex-col gap-12 max-w-[1200px] mx-auto w-full">
