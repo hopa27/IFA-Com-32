@@ -14,9 +14,6 @@ export function Header() {
           <Logo variant="light" className="h-6 w-auto cursor-pointer" />
         </Link>
         <div className="flex items-center gap-4">
-          <Link href="/components" className="text-white text-sm hover:underline">
-            Components
-          </Link>
           <Button variant="ghost" className="h-8 text-white hover:bg-white/10">
             Logout
           </Button>
