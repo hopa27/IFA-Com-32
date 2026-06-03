@@ -8,7 +8,7 @@ export function Header() {
   const pageTitle = location === "/components" ? "Component Library" : "IFA Bacs Commission";
 
   return (
-    <header className="w-full bg-[#00263e] pt-4 pb-6 px-[142px]">
+    <header className="w-full bg-[#00263e] py-5 px-[142px]">
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-5">
           <Link href="/">
