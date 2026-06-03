@@ -1,0 +1,10 @@
+# Render static site for the IFA Bacs Commission web app.
+# https://render.com/docs/blueprint-spec
+staticSites:
+  - name: ifa-bacs-commission
+    buildCommand: pnpm install --frozen-lockfile && pnpm run build:web
+    staticPublishPath: artifacts/ifa-bacs-commission/dist/public
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
