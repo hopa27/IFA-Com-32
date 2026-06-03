@@ -58,6 +58,8 @@ export default function Home() {
     setData([]);
   };
 
+  const allFieldsFilled = Boolean(startDate && endDate && payDate);
+
   const handleCalc = () => {
     setIsCalculating(true);
     setTimeout(() => {
@@ -128,11 +130,11 @@ export default function Home() {
             </div>
 
             <div className="flex gap-4 ml-auto">
-              <Button variant="secondary" onClick={handleUndo} disabled={isCalculating} className="gap-2">
+              <Button variant="secondary" onClick={handleUndo} disabled={isCalculating || !allFieldsFilled} className="gap-2">
                 <MdUndo className="text-[20px]" />
                 Undo
               </Button>
-              <Button onClick={handleCalc} disabled={isCalculating} className="gap-2">
+              <Button onClick={handleCalc} disabled={isCalculating || !allFieldsFilled} className="gap-2">
                 <MdPlayArrow className="text-[20px]" />
                 {isCalculating ? "Calculating..." : "GO!!"}
               </Button>
