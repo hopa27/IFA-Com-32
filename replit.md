@@ -7,7 +7,8 @@ A modern web recreation of the legacy "IFA Bacs Commission" Windows desktop tool
 - `pnpm --filter @workspace/ifa-bacs-commission run dev` — run the web app (Vite)
 - `pnpm --filter @workspace/ifa-bacs-commission run typecheck` — typecheck the web app
 - `pnpm run typecheck` — full typecheck across all packages
-- `pnpm run build` — typecheck + build all packages
+- `pnpm run build` — typecheck + build the IFA Bacs Commission web app (Render/static deploy)
+- `pnpm run build:all` — typecheck + build every workspace package (includes mockup-sandbox, api-server)
 
 ## Stack
 

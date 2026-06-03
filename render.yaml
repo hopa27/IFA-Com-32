@@ -2,7 +2,8 @@
 # https://render.com/docs/blueprint-spec
 staticSites:
   - name: ifa-bacs-commission
-    buildCommand: pnpm install --frozen-lockfile && pnpm run build:web
+    # Render runs `pnpm install` before buildCommand; `build` targets the web app only.
+    buildCommand: pnpm run build
     staticPublishPath: artifacts/ifa-bacs-commission/dist/public
     routes:
       - type: rewrite
