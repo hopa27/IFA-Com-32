@@ -4,7 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import { DatePicker } from "@/components/ui/date-picker";
 import { Button } from "@/components/ui/button";
 import { DataGrid } from "@/components/ui/data-grid";
-import { format, parseISO } from "date-fns";
+import { format, parseISO, addDays } from "date-fns";
 
 interface CommissionRow {
   id: string;
@@ -32,6 +32,11 @@ export default function Home() {
   const [payDate, setPayDate] = useState<Date | undefined>();
   const [data, setData] = useState<CommissionRow[]>([]);
   const [isCalculating, setIsCalculating] = useState(false);
+
+  const handleEndDateSelect = (date: Date | undefined) => {
+    setEndDate(date);
+    setPayDate(date ? addDays(date, 3) : undefined);
+  };
 
   const handleCalc = () => {
     setIsCalculating(true);
@@ -85,7 +90,7 @@ export default function Home() {
             
             <div className="w-[280px]">
               <label className="block font-['Livvic'] text-[14px] font-medium text-[#3d3d3d] mb-2">End Date</label>
-              <DatePicker date={endDate} onSelect={setEndDate} />
+              <DatePicker date={endDate} onSelect={handleEndDateSelect} />
             </div>
 
             <div className="w-[280px]">
