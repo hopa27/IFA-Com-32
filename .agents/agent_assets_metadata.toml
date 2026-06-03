@@ -1,8 +1,19 @@
 uploads = []
-outputs = []
 
 [[generated]]
 id = "4Y-n1N3YWHp-DLwJIqxFY"
 uri = "file://artifacts/ifa-bacs-commission/public/lve-logo.png"
 type = "image"
 title = "LVE corporate logo"
+
+[[outputs]]
+id = "mR8gwfFrnc-01yDRE3mmp"
+uri = "file://attached_assets/IFA_Bacs_Commission_DIGEST(Angular).md"
+type = "text"
+title = "IFA Bacs Commission — Application Digest (Angular)"
+
+[[outputs]]
+id = "_w7guS9_1DQP1uAfoG7kr"
+uri = "file://attached_assets/IFA_Bacs_Commission_SCREEN_FLOW(Angular).md"
+type = "text"
+title = "IFA Bacs Commission — Screen Flow (Angular)"
