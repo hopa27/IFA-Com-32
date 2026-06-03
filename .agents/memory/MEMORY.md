@@ -1,0 +1,1 @@
+- [LVE design system](lve-design-system.md) — client-supplied spec is verbatim/mandatory; overrides default styling judgment.

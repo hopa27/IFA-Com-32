@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "IFA Bacs Commission"
+version = "1.0.0"
+id = "artifacts/ifa-bacs-commission"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22874
+
+[services.development]
+run = "pnpm --filter @workspace/ifa-bacs-commission run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/ifa-bacs-commission", "run", "build" ]
+publicDir = "artifacts/ifa-bacs-commission/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22874"
+BASE_PATH = "/"

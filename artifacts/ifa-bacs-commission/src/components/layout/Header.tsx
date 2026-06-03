@@ -1,0 +1,31 @@
+import * as React from "react"
+import { Link, useLocation } from "wouter"
+import { Button } from "@/components/ui/button"
+import { Logo } from "@/components/layout/Logo"
+
+export function Header() {
+  const [location] = useLocation();
+  const pageTitle = location === "/components" ? "Component Library" : "IFA Bacs Commission";
+
+  return (
+    <header className="w-full bg-[#00263e] pt-4 pb-6 px-[142px]">
+      <div className="flex justify-between items-center">
+        <Link href="/">
+          <Logo variant="light" className="h-6 w-auto cursor-pointer" />
+        </Link>
+        <div className="flex items-center gap-4">
+          <Link href="/components" className="text-white text-sm hover:underline">
+            Components
+          </Link>
+          <Button variant="ghost" className="h-8 text-white hover:bg-white/10">
+            Logout
+          </Button>
+        </div>
+      </div>
+      <div className="h-px bg-slate-600/50 mt-4 mb-6" />
+      <h1 className="font-['Livvic'] text-3xl font-normal tracking-tight text-white">
+        {pageTitle}
+      </h1>
+    </header>
+  )
+}
