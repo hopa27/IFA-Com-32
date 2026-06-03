@@ -33,6 +33,18 @@ export default function Home() {
   const [data, setData] = useState<CommissionRow[]>([]);
   const [isCalculating, setIsCalculating] = useState(false);
 
+  const handleStartDateSelect = (date: Date | undefined) => {
+    setStartDate(date);
+    if (date) {
+      const suggestedEnd = addDays(date, 6);
+      setEndDate(suggestedEnd);
+      setPayDate(addDays(suggestedEnd, 3));
+    } else {
+      setEndDate(undefined);
+      setPayDate(undefined);
+    }
+  };
+
   const handleEndDateSelect = (date: Date | undefined) => {
     setEndDate(date);
     setPayDate(date ? addDays(date, 3) : undefined);
@@ -85,7 +97,7 @@ export default function Home() {
           <div className="flex items-end gap-6">
             <div className="w-[280px]">
               <label className="block font-['Livvic'] text-[14px] font-medium text-[#3d3d3d] mb-2">Start Date</label>
-              <DatePicker date={startDate} onSelect={setStartDate} />
+              <DatePicker date={startDate} onSelect={handleStartDateSelect} />
             </div>
             
             <div className="w-[280px]">
