@@ -4,6 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import { DatePicker } from "@/components/ui/date-picker";
 import { Button } from "@/components/ui/button";
 import { DataGrid } from "@/components/ui/data-grid";
+import { useToast } from "@/hooks/use-toast";
 import { MdUndo, MdPlayArrow } from "react-icons/md";
 import { format, parseISO, addDays, isBefore, isAfter, startOfDay } from "date-fns";
 
@@ -33,6 +34,13 @@ export default function Home() {
   const [payDate, setPayDate] = useState<Date | undefined>();
   const [data, setData] = useState<CommissionRow[]>([]);
   const [isCalculating, setIsCalculating] = useState(false);
+  const { toast } = useToast();
+
+  const resetFields = () => {
+    setStartDate(undefined);
+    setEndDate(undefined);
+    setPayDate(undefined);
+  };
 
   const handleStartDateSelect = (date: Date | undefined) => {
     setStartDate(date);
@@ -52,23 +60,30 @@ export default function Home() {
   };
 
   const handleUndo = () => {
-    setStartDate(undefined);
-    setEndDate(undefined);
-    setPayDate(undefined);
+    resetFields();
     setData([]);
+    toast({
+      title: "Cleared",
+      description: "Date fields have been reset.",
+    });
   };
 
   const allFieldsFilled = Boolean(startDate && endDate && payDate);
 
   const handleCalc = () => {
     setIsCalculating(true);
+    const effectivePayDate = payDate ?? endDate ?? new Date();
+    const payDateStr = format(effectivePayDate, "yyyy-MM-dd");
     setTimeout(() => {
-      const effectivePayDate = payDate ?? endDate ?? new Date();
-      const payDateStr = format(effectivePayDate, "yyyy-MM-dd");
       setData(
         SAMPLE_DATA.map((row) => ({ ...row, payDate: payDateStr }))
       );
       setIsCalculating(false);
+      resetFields();
+      toast({
+        title: "Commission report generated",
+        description: `${SAMPLE_DATA.length} records calculated for pay date ${format(effectivePayDate, "dd MMM yyyy")}.`,
+      });
     }, 600);
   };
 
