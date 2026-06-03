@@ -17,9 +17,10 @@ interface DatePickerProps {
   error?: boolean;
   disabled?: boolean;
   highlightMondays?: boolean;
+  isDateDisabled?: (date: Date) => boolean;
 }
 
-export function DatePicker({ date, onSelect, placeholder = "Select date", error, disabled, highlightMondays }: DatePickerProps) {
+export function DatePicker({ date, onSelect, placeholder = "Select date", error, disabled, highlightMondays, isDateDisabled }: DatePickerProps) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
@@ -62,6 +63,7 @@ export function DatePicker({ date, onSelect, placeholder = "Select date", error,
           selected={date}
           error={error}
           highlightMondays={highlightMondays}
+          isDateDisabled={isDateDisabled}
           onSelect={(d) => {
             onSelect?.(d);
             setIsOpen(false);

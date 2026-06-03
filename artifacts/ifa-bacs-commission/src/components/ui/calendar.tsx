@@ -30,6 +30,7 @@ interface CalendarProps {
   onSelect?: (date: Date | undefined) => void
   error?: boolean
   highlightMondays?: boolean
+  isDateDisabled?: (date: Date) => boolean
 }
 
 function NavButton({
@@ -55,7 +56,7 @@ function NavButton({
   )
 }
 
-export function Calendar({ selected, onSelect, error, highlightMondays }: CalendarProps) {
+export function Calendar({ selected, onSelect, error, highlightMondays, isDateDisabled }: CalendarProps) {
   const [view, setView] = React.useState<View>("days")
   const [displayMonth, setDisplayMonth] = React.useState<Date>(
     startOfMonth(selected ?? new Date())
@@ -156,10 +157,12 @@ export function Calendar({ selected, onSelect, error, highlightMondays }: Calend
               const isSelected = selected && isSameDay(day, selected)
               const today = isToday(day)
               const isMonday = highlightMondays && day.getDay() === 1
+              const isDisabled = isDateDisabled?.(day) ?? false
               return (
                 <div key={day.toISOString()} className="flex justify-center">
                   <button
                     type="button"
+                    disabled={isDisabled}
                     onClick={() => onSelect?.(day)}
                     style={isOutside ? { background: HATCH } : undefined}
                     className={cn(
@@ -170,7 +173,8 @@ export function Calendar({ selected, onSelect, error, highlightMondays }: Calend
                       today && !isSelected && "font-semibold text-[#006cf4]",
                       isMonday && !isSelected && !today && "font-semibold text-[#006cf4] ring-1 ring-inset ring-[#006cf4]/50",
                       isMonday && !isSelected && "bg-[#eef4f8]",
-                      isSelected && "bg-[#006cf4] font-semibold text-white hover:bg-[#003578]"
+                      isSelected && "bg-[#006cf4] font-semibold text-white hover:bg-[#003578]",
+                      isDisabled && "cursor-not-allowed text-[#CCCCCC] line-through opacity-60 hover:bg-transparent hover:text-[#CCCCCC]"
                     )}
                   >
                     {day.getDate()}
