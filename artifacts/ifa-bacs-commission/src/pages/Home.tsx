@@ -4,6 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import { DatePicker } from "@/components/ui/date-picker";
 import { Button } from "@/components/ui/button";
 import { DataGrid } from "@/components/ui/data-grid";
+import { MdUndo, MdPlayArrow } from "react-icons/md";
 import { format, parseISO, addDays, isBefore, isAfter, startOfDay } from "date-fns";
 
 interface CommissionRow {
@@ -48,6 +49,13 @@ export default function Home() {
   const handleEndDateSelect = (date: Date | undefined) => {
     setEndDate(date);
     setPayDate(date ? addDays(date, 3) : undefined);
+  };
+
+  const handleUndo = () => {
+    setStartDate(undefined);
+    setEndDate(undefined);
+    setPayDate(undefined);
+    setData([]);
   };
 
   const handleCalc = () => {
@@ -120,11 +128,13 @@ export default function Home() {
             </div>
 
             <div className="flex gap-4 ml-auto">
-              <Button variant="secondary" onClick={handleCalc} disabled={isCalculating}>
-                {isCalculating ? "Calculating..." : "Calc"}
+              <Button variant="secondary" onClick={handleUndo} disabled={isCalculating} className="gap-2">
+                <MdUndo className="text-[20px]" />
+                Undo
               </Button>
-              <Button onClick={handleCalc} disabled={isCalculating}>
-                GO!!
+              <Button onClick={handleCalc} disabled={isCalculating} className="gap-2">
+                <MdPlayArrow className="text-[20px]" />
+                {isCalculating ? "Calculating..." : "GO!!"}
               </Button>
             </div>
           </div>
@@ -154,7 +164,7 @@ export default function Home() {
             </div>
             <h3 className="font-['Livvic'] text-[20px] font-semibold text-[#002f5c] mb-2">No data generated</h3>
             <p className="font-['Mulish'] text-[16px] text-[#3d3d3d] max-w-[400px]">
-              Select your date parameters and click "Calc" or "GO!!" to generate the BACS commission report.
+              Select your date parameters and click "GO!!" to generate the BACS commission report.
             </p>
           </div>
         )}
