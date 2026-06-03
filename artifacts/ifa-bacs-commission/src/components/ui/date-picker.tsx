@@ -16,9 +16,10 @@ interface DatePickerProps {
   placeholder?: string;
   error?: boolean;
   disabled?: boolean;
+  highlightMondays?: boolean;
 }
 
-export function DatePicker({ date, onSelect, placeholder = "Select date", error, disabled }: DatePickerProps) {
+export function DatePicker({ date, onSelect, placeholder = "Select date", error, disabled, highlightMondays }: DatePickerProps) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
@@ -60,6 +61,7 @@ export function DatePicker({ date, onSelect, placeholder = "Select date", error,
         <Calendar
           selected={date}
           error={error}
+          highlightMondays={highlightMondays}
           onSelect={(d) => {
             onSelect?.(d);
             setIsOpen(false);

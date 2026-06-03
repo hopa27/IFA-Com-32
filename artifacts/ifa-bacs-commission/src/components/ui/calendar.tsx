@@ -29,6 +29,7 @@ interface CalendarProps {
   selected?: Date
   onSelect?: (date: Date | undefined) => void
   error?: boolean
+  highlightMondays?: boolean
 }
 
 function NavButton({
@@ -54,7 +55,7 @@ function NavButton({
   )
 }
 
-export function Calendar({ selected, onSelect, error }: CalendarProps) {
+export function Calendar({ selected, onSelect, error, highlightMondays }: CalendarProps) {
   const [view, setView] = React.useState<View>("days")
   const [displayMonth, setDisplayMonth] = React.useState<Date>(
     startOfMonth(selected ?? new Date())
@@ -137,10 +138,13 @@ export function Calendar({ selected, onSelect, error }: CalendarProps) {
               error ? "text-[#d72714]" : "text-[#002f5c]"
             )}
           >
-            {WEEKDAYS.map((d) => (
+            {WEEKDAYS.map((d, i) => (
               <div
                 key={d}
-                className="text-center text-[12px] font-semibold"
+                className={cn(
+                  "text-center text-[12px] font-semibold",
+                  highlightMondays && i === 1 && !error && "text-[#006cf4]"
+                )}
               >
                 {d}
               </div>
@@ -151,6 +155,7 @@ export function Calendar({ selected, onSelect, error }: CalendarProps) {
               const isOutside = !isSameMonth(day, displayMonth)
               const isSelected = selected && isSameDay(day, selected)
               const today = isToday(day)
+              const isMonday = highlightMondays && day.getDay() === 1
               return (
                 <div key={day.toISOString()} className="flex justify-center">
                   <button
@@ -163,6 +168,8 @@ export function Calendar({ selected, onSelect, error }: CalendarProps) {
                       isOutside && "opacity-50",
                       !isSelected && !today && "text-[#3d3d3d]",
                       today && !isSelected && "font-semibold text-[#006cf4]",
+                      isMonday && !isSelected && !today && "font-semibold text-[#006cf4] ring-1 ring-inset ring-[#006cf4]/50",
+                      isMonday && !isSelected && "bg-[#eef4f8]",
                       isSelected && "bg-[#006cf4] font-semibold text-white hover:bg-[#003578]"
                     )}
                   >
