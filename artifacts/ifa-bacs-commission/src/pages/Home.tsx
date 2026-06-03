@@ -158,7 +158,7 @@ export default function Home() {
         </div>
 
         {/* Results Grid */}
-        {data.length > 0 ? (
+        {data.length > 0 && (
           <div className="bg-white rounded-[12px] border border-[#BBBBBB] shadow-sm overflow-hidden flex-1">
             <div className="p-6 border-b border-[#BBBBBB] flex justify-between items-center bg-[#eef4f8]">
               <h3 className="font-['Livvic'] text-[20px] font-semibold text-[#002f5c]">Results</h3>
@@ -169,20 +169,6 @@ export default function Home() {
             <div className="p-6">
               <DataGrid columns={columns} data={data} />
             </div>
-          </div>
-        ) : (
-          <div className="bg-white rounded-[12px] border border-[#BBBBBB] shadow-sm p-12 flex flex-col items-center justify-center text-center flex-1">
-            <div className="text-[#BBBBBB] mb-4">
-              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M3 9H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M9 21V9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
-            <h3 className="font-['Livvic'] text-[20px] font-semibold text-[#002f5c] mb-2">No data generated</h3>
-            <p className="font-['Mulish'] text-[16px] text-[#3d3d3d] max-w-[400px]">
-              Select your date parameters and click "GO!!" to generate the BACS commission report.
-            </p>
           </div>
         )}
 
