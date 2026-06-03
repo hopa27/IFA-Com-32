@@ -27,8 +27,8 @@ const SAMPLE_DATA: CommissionRow[] = [
 ];
 
 export default function Home() {
-  const [startDate, setStartDate] = useState<Date | undefined>(new Date(2026, 3, 13));
-  const [endDate, setEndDate] = useState<Date | undefined>(new Date(2026, 3, 19));
+  const [startDate, setStartDate] = useState<Date | undefined>();
+  const [endDate, setEndDate] = useState<Date | undefined>();
   const [payDate, setPayDate] = useState<Date | undefined>();
   const [data, setData] = useState<CommissionRow[]>([]);
   const [isCalculating, setIsCalculating] = useState(false);
