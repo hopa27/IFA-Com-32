@@ -1,5 +1,6 @@
 import * as React from "react"
 import { Link, useLocation } from "wouter"
+import { MdClose } from "react-icons/md"
 import { Button } from "@/components/ui/button"
 import { Logo } from "@/components/layout/Logo"
 
@@ -20,6 +21,13 @@ export function Header() {
           </h1>
         </div>
         <div className="flex items-center gap-4">
+          <Button
+            variant="ghost"
+            aria-label="Close"
+            className="h-8 w-8 p-0 text-white hover:bg-white/10"
+          >
+            <MdClose className="text-[20px]" />
+          </Button>
           <Button variant="ghost" className="h-8 text-white hover:bg-white/10">
             Logout
           </Button>
