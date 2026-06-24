@@ -72,13 +72,13 @@ export default function Home() {
         <div className="bg-white rounded-[12px] border border-[#BBBBBB] p-8 shadow-sm">
           <h2 className="font-['Livvic'] text-[24px] font-semibold text-[#002f5c] mb-6">Calculate Commission Run</h2>
           
-          <div className="flex items-end gap-6">
-            <div className="w-[280px]">
+          <div className="flex flex-wrap items-end gap-6">
+            <div className="flex-1 min-w-[200px] max-w-[280px]">
               <label className="block font-['Livvic'] text-[14px] font-medium text-[#3d3d3d] mb-2">Start Date</label>
               <DatePicker date={startDate} onSelect={handleStartDateSelect} />
             </div>
             
-            <div className="w-[280px]">
+            <div className="flex-1 min-w-[200px] max-w-[280px]">
               <label className="block font-['Livvic'] text-[14px] font-medium text-[#3d3d3d] mb-2">End Date</label>
               <DatePicker
                 date={endDate}
@@ -87,7 +87,7 @@ export default function Home() {
               />
             </div>
 
-            <div className="w-[280px]">
+            <div className="flex-1 min-w-[200px] max-w-[280px]">
               <label className="block font-['Livvic'] text-[14px] font-medium text-[#3d3d3d] mb-2">Pay Date</label>
               <DatePicker
                 date={payDate}
@@ -97,7 +97,7 @@ export default function Home() {
               />
             </div>
 
-            <div className="flex gap-4 ml-auto">
+            <div className="flex flex-wrap gap-4 ml-auto shrink-0">
               <Button variant="secondary" onClick={handleUndo} disabled={isCalculating || !allFieldsFilled} className="gap-2">
                 <MdUndo className="text-[20px]" />
                 Undo
