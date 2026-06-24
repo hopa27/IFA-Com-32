@@ -57,7 +57,7 @@ export default function Home() {
       resetFields();
       toast({
         title: "Report sent to Finance team",
-        description: `${RECORD_COUNT} records for pay date ${format(effectivePayDate, "dd MMM yyyy")} were calculated and the BACS file was sent automatically.`,
+        description: `${RECORD_COUNT} records for pay date ${format(effectivePayDate, "dd/MM/yyyy")} were calculated and the BACS file was sent automatically.`,
       });
     }, 600);
   };

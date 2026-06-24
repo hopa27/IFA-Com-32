@@ -40,7 +40,7 @@ export function DatePicker({ date, onSelect, placeholder = "Select date", error,
           )}
         >
           <span className="flex-1 truncate">
-            {date ? format(date, "dd, MMM, yyyy") : placeholder}
+            {date ? format(date, "dd/MM/yyyy") : placeholder}
           </span>
           <div className="absolute right-0 flex items-center h-full pr-[12px] pointer-events-none">
             <div className="h-6 w-[1px] bg-[#BBBBBB] mr-[8px]" />
