@@ -21,6 +21,38 @@ interface DatePickerProps {
 
 const DATE_FORMAT = "dd/MM/yyyy";
 
+// Strips non-digits and formats progressively as DD/MM/YYYY while typing.
+// Clamps month to 01-12 and day to 01-31; full calendar validity (e.g. 31/02)
+// is enforced on commit.
+function maskDateInput(value: string): string {
+  const digits = value.replace(/\D/g, "").slice(0, 8);
+
+  let day = digits.slice(0, 2);
+  let month = digits.slice(2, 4);
+  const year = digits.slice(4, 8);
+
+  if (day.length === 1 && Number(day) > 3) {
+    day = "0" + day;
+  } else if (day.length === 2) {
+    const d = Number(day);
+    if (d === 0) day = "01";
+    else if (d > 31) day = "31";
+  }
+
+  if (month.length === 1 && Number(month) > 1) {
+    month = "0" + month;
+  } else if (month.length === 2) {
+    const m = Number(month);
+    if (m === 0) month = "01";
+    else if (m > 12) month = "12";
+  }
+
+  let result = day;
+  if (digits.length > 2) result += "/" + month;
+  if (digits.length > 4) result += "/" + year;
+  return result;
+}
+
 export function DatePicker({ date, onSelect, placeholder = "DD/MM/YYYY", error, disabled, highlightMondays, isDateDisabled }: DatePickerProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [isFocused, setIsFocused] = React.useState(false);
@@ -73,7 +105,7 @@ export function DatePicker({ date, onSelect, placeholder = "DD/MM/YYYY", error, 
           value={inputValue}
           placeholder={placeholder}
           onChange={(e) => {
-            setInputValue(e.target.value);
+            setInputValue(maskDateInput(e.target.value));
             if (typedInvalid) setTypedInvalid(false);
           }}
           onFocus={() => setIsFocused(true)}
