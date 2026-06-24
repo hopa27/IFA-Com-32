@@ -23,10 +23,10 @@ export function Header() {
         <div className="flex items-center gap-4">
           <Button
             variant="ghost"
-            aria-label="Close"
-            className="h-8 w-8 p-0 text-white hover:bg-white/10"
+            className="h-8 gap-2 text-white hover:bg-white/10"
           >
             <MdClose className="text-[20px]" />
+            Close
           </Button>
           <Button variant="ghost" className="h-8 text-white hover:bg-white/10">
             Logout
